@@ -41,11 +41,6 @@ Dataset yang digunakan dalam proyek ini adalah Credit Card Fraud Detection Datas
 3. V1 hingga V28: 28 fitur numerik yang merupakan hasil transformasi Principal Component Analysis (PCA)
 
 
-### Visualisasi Data
-Untuk bisa memahami distribusi data dengan baik digunakan visualisasi data untuk menampilkan penyebaran, hubungan ataupun distribusi data.
-
-### ![Class Distribution](Assets/Sprites/download (11).png)
-
 ## Data Preparation
 Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai berikuyt:
 
@@ -126,9 +121,8 @@ Memberikan balance optimal antara precision dan recall, sangat cocok untuk imbal
 **Precision = TP / (TP + FP**). Mengukur akurasi prediksi fraud, penting untuk mengurangi biaya investigasi transaksi normal
 
 ### Recall (Sensitivity/True Positive Rate)
-Recall = TP / (TP + FN). Mengukur kemampuan mendeteksi fraud, sangat penting untuk meminimalkan kerugian finansial
+**Recall = TP / (TP + FN)**. Mengukur kemampuan mendeteksi fraud, sangat penting untuk meminimalkan kerugian finansial
 
-Berdasarkan metrik evaluasi tersebut, berikut adalah hasil proyek:
 
 Tiga algoritma machine learning yang diimplementasikan menunjukkan performa yang sangat baik: XGBoost, LightGBM, dan Random Forest. Berdasarkan evaluasi menggunakan metrik F1-Score dan ROC-AUC, semua model menunjukkan performa yang excellent dengan nilai ROC-AUC di atas 0.95. Model terbaik adalah XGBoost dengan **F1-Score optimal sekitar 0.85-0.90** dan ROC-AUC mencapai 0.98-0.99, diikuti oleh LightGBM dan Random Forest dengan performa yang sangat kompetitif.
 
