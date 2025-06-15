@@ -77,8 +77,7 @@ Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai beriku
 
 ## Modeling
 Proyek ini menggunakan ensemble modeling approach dengan tiga algoritma utama dan parameter untulk Random Forest Classifier adalah 
-1. n_estimators: default (100)
-2. random_state: 1
+1. n_estimators: default (100) dan random_state: 1
 
 1. XGBoost (Extreme Gradient Boosting)
 2. LightGBM (Light Gradient Boosting Machine)
@@ -97,7 +96,51 @@ Ensemble dari multiple decision trees, robust terhadap overfitting serta good ba
 1. Threshold Optimization, untuk menemukan threshold optimal untuk berbagai metrics (F1, Precision, Recall), sangat penting untuk imbalanced dataset seperti fraud detection serta memaksimalkan trade-off antara precision dan recall
 2. Comprehensive Model Evaluation
 
-### 
+### Model Performance Metrics
+1. ROC-AUC: Area Under ROC Curve
+2. F1-Score: Harmonic mean of precision and recall
+3. Precision: True Positives / (True Positives + False Positives)
+4. Recall: True Positives / (True Positives + False Negatives)
+
+### Business Metrics
+Pertimbangan Dampak Bisnis:
+1. Cost of False Positive: Biaya investigasi transaksi normal
+2. Cost of False Negative: Kerugian akibat fraud yang terlewat
+3. Revenue from True Positive: Keuntungan dari fraud yang berhasil dicegah
+
+### Model Comparison dan Selection
+1. Performance Comparison
+2. Best Model Selection
+
+
+## Evaluation
+Metrik evaluasi yang digunakan dalam proyek ini adalah sebagai berikut:
+
+### ROC-AUC (Area Under ROC Curve)
+Digunakan untuk mengukur kemampuan model membedakan antara kelas fraud dan normal dengan Threshold-independent metric dan **nilai 0.5 = random classifier, 1.0 = perfect classifier**, robust terhadap class imbalance
+
+### F1-Score
+Memberikan balance optimal antara precision dan recall, sangat cocok untuk imbalanced dataset (fraud hanya ~0.172% dari total transaksi) serta menghindari bias terhadap majority class (transaksi normal). **Formula: F1 = 2 × (Precision × Recall) / (Precision + Recall)**
+
+### Precision (Positive Predictive Value)
+**Precision = TP / (TP + FP**). Mengukur akurasi prediksi fraud, penting untuk mengurangi biaya investigasi transaksi normal
+
+### Recall (Sensitivity/True Positive Rate)
+Recall = TP / (TP + FN). Mengukur kemampuan mendeteksi fraud, sangat penting untuk meminimalkan kerugian finansial
+
+Berdasarkan metrik evaluasi tersebut, berikut adalah hasil proyek:
+
+Tiga algoritma machine learning yang diimplementasikan menunjukkan performa yang sangat baik: XGBoost, LightGBM, dan Random Forest. Berdasarkan evaluasi menggunakan metrik F1-Score dan ROC-AUC, semua model menunjukkan performa yang excellent dengan nilai ROC-AUC di atas 0.95. Model terbaik adalah XGBoost dengan **F1-Score optimal sekitar 0.85-0.90** dan ROC-AUC mencapai 0.98-0.99, diikuti oleh LightGBM dan Random Forest dengan performa yang sangat kompetitif.
+
+Optimasi Threshold dan Business Impact
+Analisis threshold optimal menunjukkan bahwa penggunaan **threshold default 0.5** tidak selalu memberikan hasil terbaik untuk kasus fraud detection. Threshold optimal untuk F1-Score biasanya berada di kisaran 0.1-0.3, yang memberikan keseimbangan yang lebih baik antara precision dan recall. Analisis business impact menunjukkan bahwa dengan menggunakan threshold yang dioptimalkan, model dapat memberikan net benefit yang signifikan dengan mengurangi biaya investigasi false positive sambil memaksimalkan deteksi fraud yang sebenarnya.
+
+Proyek ini berhasil mengembangkan sistem deteksi fraud yang robust dengan akurasi tinggi dan false positive rate yang dapat diterima. Model XGBoost direkomendasikan sebagai model final dengan threshold optimal sekitar 0.2-0.3 untuk memberikan keseimbangan terbaik antara deteksi fraud dan minimisasi false alarm. 
+
+
+
+
+
 
 
 
