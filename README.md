@@ -43,7 +43,7 @@ Dataset yang digunakan dalam proyek ini adalah Credit Card Fraud Detection Datas
 
 ### Visualisasi Data
 Untuk bisa memahami distribusi data dengan baik digunakan visualisasi data untuk menampilkan penyebaran, hubungan ataupun distribusi data.
-![Class Distribution](../Assets/Sprites/download (11).png)
+![Class Distribution](/../Assets/Sprites/download (11).png)
 
 ## Data Preparation
 
