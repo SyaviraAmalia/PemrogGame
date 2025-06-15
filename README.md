@@ -1,4 +1,4 @@
-# Credit Card Frau Prediction
+# Credit Card Fraud Prediction
 ## Domain Proyek
 Domain proyek dari "Credit Card Fraud Predictrion" ekonomi dan bisnis. Penipuan kartu kredit, terutama dengan meningkatnya jumlah transaksi digital, merupakan masalah besar dalam industri finansial.  Baik individu maupun bisnis dapat mengalami kerugian finansial yang besar sebagai akibat dari transaksi penipuan.  Akibatnya, sistem yang mampu mendeteksi transaksi penipuan secara otomatis dan efektif diperlukan.  Metode pengajaran mesin sangat membantu dalam mengidentifikasi pola penipuan yang didasarkan pada data historis transaksi. Berikut beberapa poin relevansinya dengan domain ekonomi dan bisnis:
 
@@ -35,11 +35,22 @@ Dataset yang digunakan dalam proyek ini adalah Credit Card Fraud Detection Datas
 5. Jumlah Sampel: 284,807 transaksi
 6. Tipe Data: Numerik (float64 dan int64)
 
-
-### Deskripsi Fitur
+### Variabel-variabel pada Credit Card Fraud Detecion adalah sebagai berikut: 
 1. Time: Waktu dalam detik yang telah berlalu antara setiap transaksi dan transaksi pertama dalam dataset
 2. Amount: Nilai transaksi
-3. V1 hingga V28: Hasil transformasi PCA (karena alasan privasi)
-4. Class: Label target
+3. V1 hingga V28: 28 fitur numerik yang merupakan hasil transformasi Principal Component Analysis (PCA)
+
+
+### Visualisasi Data
+Untuk bisa memahami distribusi data dengan baik digunakan visualisasi data untuk menampilkan penyebaran, hubungan ataupun distribusi data.
+![Class Distribution](/Assets/Sprites/download (11).png)
+
+## Data Preparation
+
+
+
+
+
+
 
 
