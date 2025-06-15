@@ -47,11 +47,57 @@ Untuk bisa memahami distribusi data dengan baik digunakan visualisasi data untuk
 ### ![Class Distribution](Assets/Sprites/download (11).png)
 
 ## Data Preparation
+Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai berikuyt:
+
+### Feature Engineering
+1. Time-based features:mengkonversi kolom "Time" menjadi fitur "Hour" dan "Day". Membantu model memahami pola temporal dalam transaksi fraud.
+2. Amount-based features: Transformasi logaritmik dan akar kuadrat pada kolom "Amount". Mengurangi skewness dan outlier pada distribusi amount
+3. Statistical features dari kolom V: Membuat fitur agregat dari kolom V1-V28 (hasil PCA) dan menangkap pola statistik keseluruhan dari fitur-fitur PCA
+4. Interaction Features: Membuat fitur interaksi antara fitur-fitur yang berkorelasi tinggi dan menangkap hubungan non-linear antar fitur
+
+###  Outlier Detection dan Handling
+1. Isolation Forest Method: Menggunakan Isolation Forest untuk mendeteksi outlier dan menghapus 10% data yang dianggap outlier
+
+### Feature Selection
+1. Recursive Feature Elimination (RFE)
+2. Feature Importance
+3. Univariate Selection
+
+### Data Scaling
+1. Robust Scaler: Menggunakan RobustScaler yang lebih tahan terhadap outlier dan menstandarisasi fitur untuk algoritma yang sensitif terhadap skala
+
+### Handling Imbalanced Data
+1. SMOTE (Synthetic Minority Oversampling Technique)
+2. SMOTE (Synthetic Minority Oversampling Technique)
+3. SMOTE-Tomek (Kombinasi Over dan Under Sampling)
+
+### Data Splitting
+1. Stratified Split: Mempertahankan proporsi kelas dalam train dan test set
 
 
+## Modeling
+Proyek ini menggunakan ensemble modeling approach dengan tiga algoritma utama dan parameter untulk Random Forest Classifier adalah 
+1. n_estimators: default (100)
+2. random_state: 1
 
+1. XGBoost (Extreme Gradient Boosting)
+2. LightGBM (Light Gradient Boosting Machine)
+3. Random Forest
 
+### XGBoost Model
+Gradient boosting yang optimized untuk speed dan performance, baik untuk data tabular dan imbalanced dataset serta built-in regularization untuk mencegah overfitting
 
+### LightGBM Model
+Lebih cepat dan memory efficient dibanding XGBoost, menggunakan leaf-wise tree growth dan excellent performance pada large dataset
+
+### Random Forest Model
+Ensemble dari multiple decision trees, robust terhadap overfitting serta good baseline model untuk classification
+
+### Advanced Evaluation System
+1. Threshold Optimization, untuk menemukan threshold optimal untuk berbagai metrics (F1, Precision, Recall), sangat penting untuk imbalanced dataset seperti fraud detection serta memaksimalkan trade-off antara precision dan recall
+2. Comprehensive Model Evaluation
+
+### 
 
 
 
