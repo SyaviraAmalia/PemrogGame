@@ -148,25 +148,25 @@ Pertimbangan Dampak Bisnis:
 Berdasarkan evaluasi pada test set, berikut adalah performa masing-masing model:
 
 #### XGBoost:
-- **ROC-AUC**:  0.9795
-- **F1-Score Optimal**: 0.8394
-- **Recall**: 0.8265
+- **ROC-AUC**:  0.8637
+- **F1-Score Optimal**: 0.3030
+- **Recall**: 0.3125
 - **Optimal Threshold**: 0.9500
 
 #### LightGBM:
-- **ROC-AUC**:  0.9500
-- **F1-Score Optimal**: 0.8316
-- **Recall**: 0.8061
+- **ROC-AUC**:  0.8581
+- **F1-Score Optimal**: 0.2143
+- **Recall**: 0.1875
 - **Optimal Threshold**: 0.9700
 
 #### Random Forest:
 - **ROC-AUC**: 0.9835
-- **F1-Score Optimal**: 0.7914
-- **Recall**: 0.7551
-- **Optimal Threshold**: 0.9100
+- **F1-Score Optimal**: 0.1935
+- **Recall**: 0.1875
+- **Optimal Threshold**: 0.8500
 
 ### Model Terbaik
-Berdasarkan hasil evaluasi, model **XGBoost** menunjukkan performa terbaik berdasarkan nilai F1-Score nya adalah **0.8394**
+Berdasarkan hasil evaluasi, model **XGBoost** menunjukkan performa terbaik berdasarkan nilai F1-Score nya adalah **0.3030**
 
 
 
