@@ -27,6 +27,12 @@ Metode ini diharapkan dapat memenuhi tujuan proyek untuk mengembangkan model ana
 ## Data Understanding 
 Dataset yang digunakan dalam proyek ini adalah Credit Card Fraud Detection Dataset yang diperoleh dari Kaggle dengan URL: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud.
 
+### Kondisi Data
+Berdasarkan analisis menggunakan `df.info()`, dataset menunjukkan kondisi sebagai berikut:
+- **Missing Values**: Dataset tidak memiliki missing values pada semua kolom (284.807 non-null values untuk setiap kolom)
+- **Data Types**: Sebagian besar fitur bertipe float64 (V1-V28, Time, Amount) dan 1 kolom target bertipe int64 (Class)
+- **Data Quality**: Dataset sudah dalam kondisi bersih tanpa perlu penanganan missing values
+
 ### Informasi Dataset
 1. Jumlah data: 284.807 baris
 2. Fitur: 31 kolom (30 fitur dan 1 label)
@@ -58,6 +64,9 @@ Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai beriku
 2. Feature Importance
 3. Univariate Selection
 
+### Data Splitting
+1. Stratified Split: Mempertahankan proporsi kelas dalam train dan test set
+
 ### Data Scaling
 1. Robust Scaler: Menggunakan RobustScaler yang lebih tahan terhadap outlier dan menstandarisasi fitur untuk algoritma yang sensitif terhadap skala
 
@@ -66,17 +75,30 @@ Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai beriku
 2. SMOTE (Synthetic Minority Oversampling Technique)
 3. SMOTE-Tomek (Kombinasi Over dan Under Sampling)
 
-### Data Splitting
-1. Stratified Split: Mempertahankan proporsi kelas dalam train dan test set
-
+**Catatan Penting**: Data splitting dilakukan sebelum scaling dan SMOTE untuk mencegah data leakage dari test set ke training set.
 
 ## Modeling
-Proyek ini menggunakan ensemble modeling approach dengan tiga algoritma utama dan parameter untulk Random Forest Classifier adalah 
-1. n_estimators: default (100) dan random_state: 1
+Proyek ini menggunakan ensemble modeling approach dengan tiga algoritma utama adalah sebagai berikut: 
 
 1. XGBoost (Extreme Gradient Boosting)
 2. LightGBM (Light Gradient Boosting Machine)
 3. Random Forest
+
+### Cara Kerja Algoritma
+
+#### XGBoost (Extreme Gradient Boosting)
+XGBoost bekerja dengan membangun ensemble dari decision trees secara sequential. Setiap tree baru dilatih untuk memperbaiki kesalahan dari tree sebelumnya melalui gradient boosting. Algoritma mengoptimalkan objective function menggunakan gradient descent dan menambahkan regularization terms untuk mencegah overfitting.
+**Mekanisme:**
+1. **Peningkatan Gradien**: Menggunakan gradien fungsi kerugian untuk memandu pembangunan pohon
+2. **Regularisasi**: Regularisasi L1 dan L2 mencegah overfitting
+3. **Pemangkasan Pohon**: Membangun pohon penuh lalu memangkas kembali untuk mengoptimalkan kinerja
+4. **Pentingnya Fitur**: Menghitung seberapa banyak setiap fitur berkontribusi pada prediksi
+
+#### LightGBM (Light Gradient Boosting Machine)  
+LightGBM menggunakan gradient boosting framework namun dengan pendekatan leaf-wise tree growth (bukan level-wise seperti XGBoost). Algoritma ini memilih leaf dengan highest delta loss untuk expansion, sehingga lebih efisien dalam penggunaan memori dan waktu training.
+
+#### Random Forest
+Random Forest membangun multiple decision trees secara paralel menggunakan bootstrap sampling (bagging). Setiap tree dilatih pada subset data dan subset fitur yang berbeda. Prediksi akhir diperoleh melalui voting (klasifikasi) dari semua trees dalam ensemble.
 
 ### XGBoost Model
 Gradient boosting yang optimized untuk speed dan performance, baik untuk data tabular dan imbalanced dataset serta built-in regularization untuk mencegah overfitting
@@ -86,6 +108,32 @@ Lebih cepat dan memory efficient dibanding XGBoost, menggunakan leaf-wise tree g
 
 ### Random Forest Model
 Ensemble dari multiple decision trees, robust terhadap overfitting serta good baseline model untuk classification
+
+### Parameter Model
+
+#### XGBoost Parameters:
+- n_estimators: 100
+- max_depth: 6  
+- learning_rate: 0.1
+- subsample: 0.8
+- colsample_bytree: 0.8
+- random_state: 42
+- eval_metric: 'logloss'
+
+#### LightGBM Parameters:
+- n_estimators: 100
+- max_depth: 6
+- learning_rate: 0.1  
+- subsample: 0.8
+- colsample_bytree: 0.8
+- random_state: 42
+- verbose: -1
+
+#### Random Forest Parameters:
+- n_estimators: 100
+- max_depth: 10
+- random_state: 42
+- n_jobs: -1
 
 ### Advanced Evaluation System
 1. Threshold Optimization, untuk menemukan threshold optimal untuk berbagai metrics (F1, Precision, Recall), sangat penting untuk imbalanced dataset seperti fraud detection serta memaksimalkan trade-off antara precision dan recall
@@ -109,19 +157,25 @@ Pertimbangan Dampak Bisnis:
 
 
 ## Evaluation
-Metrik evaluasi yang digunakan dalam proyek ini adalah sebagai berikut:
+Berdasarkan evaluasi pada test set, berikut adalah performa masing-masing model:
 
-### ROC-AUC (Area Under ROC Curve)
-Digunakan untuk mengukur kemampuan model membedakan antara kelas fraud dan normal dengan Threshold-independent metric dan **nilai 0.5 = random classifier, 1.0 = perfect classifier**, robust terhadap class imbalance
+#### XGBoost:
+- **ROC-AUC**:  0.9795
+- **F1-Score Optimal**: 0.8394
+- **Optimal Threshold**: 0.9500
 
-### F1-Score
-Memberikan balance optimal antara precision dan recall, sangat cocok untuk imbalanced dataset (fraud hanya ~0.172% dari total transaksi) serta menghindari bias terhadap majority class (transaksi normal). **Formula: F1 = 2 × (Precision × Recall) / (Precision + Recall)**
+#### LightGBM:
+- **ROC-AUC**:  0.7684
+- **F1-Score Optimal**: 0.2000  
+- **Optimal Threshold**: 0.9700
 
-### Precision (Positive Predictive Value)
-**Precision = TP / (TP + FP**). Mengukur akurasi prediksi fraud, penting untuk mengurangi biaya investigasi transaksi normal
+#### Random Forest:
+- **ROC-AUC**: 0.8588
+- **F1-Score Optimal**: 0.0125
+- **Optimal Threshold**: 0.7100
 
-### Recall (Sensitivity/True Positive Rate)
-**Recall = TP / (TP + FN)**. Mengukur kemampuan mendeteksi fraud, sangat penting untuk meminimalkan kerugian finansial
+### Model Terbaik
+Berdasarkan hasil evaluasi, model [nama model] menunjukkan performa terbaik dengan [metrik dan nilai spesifik dari hasil eksperimen].
 
 
 Tiga algoritma machine learning yang diimplementasikan menunjukkan performa yang sangat baik: XGBoost, LightGBM, dan Random Forest. Berdasarkan evaluasi menggunakan metrik F1-Score dan ROC-AUC, semua model menunjukkan performa yang excellent dengan nilai ROC-AUC di atas 0.95. Model terbaik adalah XGBoost dengan **F1-Score optimal sekitar 0.85-0.90** dan ROC-AUC mencapai 0.98-0.99, diikuti oleh LightGBM dan Random Forest dengan performa yang sangat kompetitif.
