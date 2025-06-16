@@ -100,15 +100,6 @@ LightGBM menggunakan gradient boosting framework namun dengan pendekatan leaf-wi
 #### Random Forest
 Random Forest membangun multiple decision trees secara paralel menggunakan bootstrap sampling (bagging). Setiap tree dilatih pada subset data dan subset fitur yang berbeda. Prediksi akhir diperoleh melalui voting (klasifikasi) dari semua trees dalam ensemble.
 
-### XGBoost Model
-Gradient boosting yang optimized untuk speed dan performance, baik untuk data tabular dan imbalanced dataset serta built-in regularization untuk mencegah overfitting
-
-### LightGBM Model
-Lebih cepat dan memory efficient dibanding XGBoost, menggunakan leaf-wise tree growth dan excellent performance pada large dataset
-
-### Random Forest Model
-Ensemble dari multiple decision trees, robust terhadap overfitting serta good baseline model untuk classification
-
 ### Parameter Model
 
 #### XGBoost Parameters:
