@@ -56,6 +56,13 @@ Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai beriku
 3. Statistical features dari kolom V: Membuat fitur agregat dari kolom V1-V28 (hasil PCA) dan menangkap pola statistik keseluruhan dari fitur-fitur PCA
 4. Interaction Features: Membuat fitur interaksi antara fitur-fitur yang berkorelasi tinggi dan menangkap hubungan non-linear antar fitur
 
+### Outliers Handling
+1. Isolation Forest: Ia mendeteksi anomali berdasarkan properti isolasinya, bukan label kelasnya. Hal ini penting untuk menghindari penghapusan kasus penipuan secara tidak sengaja hanya karena kasus tersebut jarang terjadi
+
+### Feature Selection
+1. Feature Importance: Menerapkan metode 'importance' menggunakan pengklasifikasi Random Forest. Melatih model Random Forest dan memberi peringkat fitur berdasarkan skor kepentingannya (seberapa banyak fitur tersebut mengurangi ketidakmurnian dalam pohon).
+
+
 ### Data Splitting
 1. Stratified Split: Mempertahankan proporsi kelas dalam train dan test set
 
