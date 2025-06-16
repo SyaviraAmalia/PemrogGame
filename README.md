@@ -153,28 +153,23 @@ Berdasarkan evaluasi pada test set, berikut adalah performa masing-masing model:
 #### XGBoost:
 - **ROC-AUC**:  0.9795
 - **F1-Score Optimal**: 0.8394
+- **Recall**: 0.8265
 - **Optimal Threshold**: 0.9500
 
 #### LightGBM:
-- **ROC-AUC**:  0.7684
-- **F1-Score Optimal**: 0.2000  
+- **ROC-AUC**:  0.9500
+- **F1-Score Optimal**: 0.8316
+- - **Recall**: 0.8061
 - **Optimal Threshold**: 0.9700
 
 #### Random Forest:
-- **ROC-AUC**: 0.8588
-- **F1-Score Optimal**: 0.0125
-- **Optimal Threshold**: 0.7100
+- **ROC-AUC**: 0.9835
+- **F1-Score Optimal**: 0.7914
+- - **Recall**: 0.7551
+- **Optimal Threshold**: 0.9100
 
 ### Model Terbaik
-Berdasarkan hasil evaluasi, model [nama model] menunjukkan performa terbaik dengan [metrik dan nilai spesifik dari hasil eksperimen].
-
-
-Tiga algoritma machine learning yang diimplementasikan menunjukkan performa yang sangat baik: XGBoost, LightGBM, dan Random Forest. Berdasarkan evaluasi menggunakan metrik F1-Score dan ROC-AUC, semua model menunjukkan performa yang excellent dengan nilai ROC-AUC di atas 0.95. Model terbaik adalah XGBoost dengan **F1-Score optimal sekitar 0.85-0.90** dan ROC-AUC mencapai 0.98-0.99, diikuti oleh LightGBM dan Random Forest dengan performa yang sangat kompetitif.
-
-Optimasi Threshold dan Business Impact
-Analisis threshold optimal menunjukkan bahwa penggunaan **threshold default 0.5** tidak selalu memberikan hasil terbaik untuk kasus fraud detection. Threshold optimal untuk F1-Score biasanya berada di kisaran 0.1-0.3, yang memberikan keseimbangan yang lebih baik antara precision dan recall. Analisis business impact menunjukkan bahwa dengan menggunakan threshold yang dioptimalkan, model dapat memberikan net benefit yang signifikan dengan mengurangi biaya investigasi false positive sambil memaksimalkan deteksi fraud yang sebenarnya.
-
-Proyek ini berhasil mengembangkan sistem deteksi fraud yang robust dengan akurasi tinggi dan false positive rate yang dapat diterima. Model XGBoost direkomendasikan sebagai model final dengan threshold optimal sekitar 0.2-0.3 untuk memberikan keseimbangan terbaik antara deteksi fraud dan minimisasi false alarm. 
+Berdasarkan hasil evaluasi, model **XGBoost** menunjukkan performa terbaik berdasarkan nilai F1-Score nya adalah **0.8394**
 
 
 
