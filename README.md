@@ -56,14 +56,6 @@ Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai beriku
 3. Statistical features dari kolom V: Membuat fitur agregat dari kolom V1-V28 (hasil PCA) dan menangkap pola statistik keseluruhan dari fitur-fitur PCA
 4. Interaction Features: Membuat fitur interaksi antara fitur-fitur yang berkorelasi tinggi dan menangkap hubungan non-linear antar fitur
 
-###  Outlier Detection dan Handling
-1. Isolation Forest Method: Menggunakan Isolation Forest untuk mendeteksi outlier dan menghapus 10% data yang dianggap outlier
-
-### Feature Selection
-1. Recursive Feature Elimination (RFE)
-2. Feature Importance
-3. Univariate Selection
-
 ### Data Splitting
 1. Stratified Split: Mempertahankan proporsi kelas dalam train dan test set
 
@@ -72,8 +64,6 @@ Teknik-teknik yang digunakan dalam proses data preparation adalah sebagai beriku
 
 ### Handling Imbalanced Data
 1. SMOTE (Synthetic Minority Oversampling Technique)
-2. SMOTE (Synthetic Minority Oversampling Technique)
-3. SMOTE-Tomek (Kombinasi Over dan Under Sampling)
 
 **Catatan Penting**: Data splitting dilakukan sebelum scaling dan SMOTE untuk mencegah data leakage dari test set ke training set.
 
