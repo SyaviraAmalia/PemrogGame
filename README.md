@@ -159,13 +159,13 @@ Berdasarkan evaluasi pada test set, berikut adalah performa masing-masing model:
 #### LightGBM:
 - **ROC-AUC**:  0.9500
 - **F1-Score Optimal**: 0.8316
-- - **Recall**: 0.8061
+- **Recall**: 0.8061
 - **Optimal Threshold**: 0.9700
 
 #### Random Forest:
 - **ROC-AUC**: 0.9835
 - **F1-Score Optimal**: 0.7914
-- - **Recall**: 0.7551
+- **Recall**: 0.7551
 - **Optimal Threshold**: 0.9100
 
 ### Model Terbaik
